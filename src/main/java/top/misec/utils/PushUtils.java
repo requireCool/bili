@@ -37,7 +37,6 @@ public class PushUtils {
 
     public static String simplifyContent(String rawContent) {
         String content = rawContent;
-        content = content.replaceAll("\\n{2,}", "\n");
 
         Matcher startMatcher = START_PATTERN.matcher(content);
         while (startMatcher.find()) {

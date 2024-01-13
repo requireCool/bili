@@ -2,7 +2,7 @@
 <configuration scan="true" scanPeriod="60 seconds" debug="false">
     <jmxConfigurator/>
 
-    <property name="LOG_PATH" value="/tmp"/>
+    <property name="LOG_PATH" value="/config"/>
     <property name="LOG_LEVEL" value="INFO"/>
     <property name="MAX_DAY" value="20"/>
     <property name="MAX_SIZE" value="100MB"/>
@@ -24,7 +24,7 @@
         <File>${LOG_PATH}/bili-helper.log</File>
         <append>false</append>
         <encoder>
-            <pattern>%msg%n%n</pattern>
+            <pattern>%msg%n</pattern>
             <charset>utf8</charset>
         </encoder>
     </appender>
