@@ -37,7 +37,7 @@ public class UserCheck {
         userInfo = new Gson().fromJson(response.getAsJsonObject("data"), UserData.class);
         log.info("Cookies有效，登录成功");
         log.info("用户名称: {}", HelpUtil.userNameEncode(userInfo.getUname()));
-        log.info("硬币余额: {}", userInfo.getMoney());
+        log.info("硬币余额: {}\n", userInfo.getMoney());
         return true;
     }
 }
