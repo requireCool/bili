@@ -37,6 +37,6 @@ jobs:
       - name: Docker build and push
         uses: docker/build-push-action@v5
         with:
-          context: ${{ GITHUB_WORKSPACE }}
+          context: ${{ github.workspace }}
           push: true # push to docker hub
           tags: ${{ steps.meta.outputs.tags }}
