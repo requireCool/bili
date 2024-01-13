@@ -1,7 +1,5 @@
-FROM openjdk:8u302-jre
+FROM eclipse-temurin:17-jre-alpine
 
-MAINTAINER JunzhouLiu Junzhou2016@outlook.com
+ADD target/BILIBILI-HELPER-*.RELEASE.jar /app/BILIBILI-HELPER.jar
 
-ADD target/BILIBILI-HELPER-*.RELEASE.jar /home/BILIBILI-HELPER.jar
-
-ENTRYPOINT ["java","-jar","/home/BILIBILI-HELPER.jar"]
+ENTRYPOINT ["entrypoint.sh"]

@@ -11,18 +11,19 @@ import top.misec.config.ConfigLoader;
  * @author junzhou
  */
 @Slf4j
-public class SleepTime {
+public class SleepUtils {
 
-    public void sleepDefault() {
-        Integer defaultTime = ConfigLoader.helperConfig.getTaskConfig().getTaskIntervalTime();
+    private static int defaultTime = ConfigLoader.helperConfig.getTaskConfig().getTaskIntervalTime();
+
+    public static void randomSleep() {
+        //兼容云函数旧版本配置
         if (defaultTime == 0) {
-            //兼容云函数旧版本配置
             defaultTime = 10;
         }
 
         Random random = new Random();
         int sleepTime = (int) ((random.nextDouble() + 0.5) * defaultTime * 1000);
-        log.info("-----随机暂停{}ms-----\n", sleepTime);
+        log.info("------随机暂停{}ms------\n", sleepTime);
         try {
             Thread.sleep(sleepTime);
         } catch (InterruptedException e) {

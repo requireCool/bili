@@ -8,7 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import top.misec.config.ConfigLoader;
 import top.misec.config.HelperConfig;
 import top.misec.task.DailyTask;
-import top.misec.task.ServerPush;
+import top.misec.utils.PushUtils;
 import top.misec.utils.VersionInfo;
 
 /**
@@ -22,10 +22,9 @@ import top.misec.utils.VersionInfo;
 public class BiliMain {
 
     public static void main(String[] args) {
-
         VersionInfo.printVersionInfo();
-        //每日任务65经验
 
+        //每日任务65经验
         if (args.length > 0) {
             log.info("使用自定义目录的配置文件");
             ConfigLoader.configInit(args[0]);
@@ -40,7 +39,7 @@ public class BiliMain {
             dailyTask.doDailyTask();
         } else {
             log.info("已开启了跳过本日任务，（不会发起任何网络请求），如果需要取消跳过，请将skipDailyTask值改为false");
-            ServerPush.doServerPush();
+            PushUtils.doPush();
         }
     }
 
@@ -61,16 +60,15 @@ public class BiliMain {
             return;
         }
 
-
         VersionInfo.printVersionInfo();
-        //每日任务65经验
 
+        //每日任务65经验
         if (!Boolean.TRUE.equals(ConfigLoader.helperConfig.getTaskConfig().getSkipDailyTask())) {
             DailyTask dailyTask = new DailyTask();
             dailyTask.doDailyTask();
         } else {
             log.info("已开启了跳过本日任务，（不会发起任何网络请求），如果需要取消跳过，请将skipDailyTask值改为false");
-            ServerPush.doServerPush();
+            PushUtils.doPush();
         }
     }
 

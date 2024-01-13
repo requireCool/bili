@@ -4,7 +4,8 @@ import com.google.gson.JsonObject;
 import lombok.extern.slf4j.Slf4j;
 import top.misec.api.ApiList;
 import top.misec.utils.HttpUtils;
-import top.misec.utils.SleepTime;
+import top.misec.utils.PushUtils;
+import top.misec.utils.SleepUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -37,8 +38,7 @@ public class DailyTask {
         dailyTasks.add(new MatchGame());
         dailyTasks.add(new MangaRead());
         Collections.shuffle(dailyTasks);
-        dailyTasks.add(0, new UserCheck());
-        dailyTasks.add(1, new CoinLogs());
+        dailyTasks.add(0, new CoinLogs());
     }
 
     /**
@@ -62,6 +62,11 @@ public class DailyTask {
     }
 
     public void doDailyTask() {
+        UserCheck userCheck = new UserCheck();
+        if (!userCheck.isCookieValid()) {
+            PushUtils.doPush();
+            return;
+        }
         try {
             dailyTasks.forEach(task -> {
                 log.info("------{}开始------", task.getName());
@@ -71,14 +76,14 @@ public class DailyTask {
                     log.error("任务[{}]运行失败", task.getName(), e);
                 }
                 log.info("------{}结束------\n", task.getName());
-                new SleepTime().sleepDefault();
+                SleepUtils.randomSleep();
             });
             log.info("本日任务已全部执行完毕");
             calculateUpgradeDays();
         } catch (Exception e) {
             log.error("任务运行异常", e);
         } finally {
-            ServerPush.doServerPush();
+            PushUtils.doPush();
         }
     }
 }
