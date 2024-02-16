@@ -1,13 +1,6 @@
 package top.misec.task;
 
-import static top.misec.task.TaskInfoHolder.STATUS_CODE_STR;
-import static top.misec.task.TaskInfoHolder.getVideoId;
-
-import java.util.HashMap;
-import java.util.Map;
-
 import com.google.gson.JsonObject;
-
 import lombok.extern.slf4j.Slf4j;
 import top.misec.api.ApiList;
 import top.misec.api.OftenApi;
@@ -15,6 +8,12 @@ import top.misec.config.ConfigLoader;
 import top.misec.utils.HelpUtil;
 import top.misec.utils.HttpUtils;
 import top.misec.utils.SleepUtils;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import static top.misec.task.TaskInfoHolder.STATUS_CODE_STR;
+import static top.misec.task.TaskInfoHolder.getVideoId;
 
 /**
  * 投币任务.
@@ -145,7 +144,7 @@ public class CoinAdd implements Task {
                 log.info("为 " + videoTitle + " 投币成功");
                 return true;
             } else {
-                log.info("投币失败" + jsonObject.get("message").getAsString());
+                log.info("投币失败：" + jsonObject.toString());
                 return false;
             }
         } else {
