@@ -31,7 +31,7 @@ public class DailyTask {
         dailyTasks.add(new MangaSign());
         dailyTasks.add(new CoinAdd());
         dailyTasks.add(new Silver2Coin());
-        dailyTasks.add(new LiveChecking());
+        //dailyTasks.add(new LiveChecking()); //直播签到活动已下线
         dailyTasks.add(new GiveGift());
         dailyTasks.add(new ChargeMe());
         dailyTasks.add(new GetVipPrivilege());
@@ -73,7 +73,7 @@ public class DailyTask {
                 try {
                     task.run();
                 } catch (Exception e) {
-                    log.error("任务[{}]运行失败", task.getName(), e);
+                    log.error("任务[{}]运行失败, 原因: {}", task.getName(), e.getMessage());
                 }
                 log.info("------{}结束------\n", task.getName());
                 SleepUtils.randomSleep();
