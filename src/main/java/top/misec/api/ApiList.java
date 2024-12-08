@@ -56,7 +56,13 @@ public class ApiList {
      */
     public static final String CHARGE_COMMENT = "https://api.bilibili.com/x/ugcpay/trade/elec/message";
     public static final String CHARGE_QUERY = "https://api.bilibili.com/x/ugcpay/web/v2/trade/elec/panel";
+
+    /**
+     * 查询用户空间详细信息，该接口已下线
+     */
+    @Deprecated
     public static final String QUERY_USER_NAME = "https://api.bilibili.com/x/space/acc/info";
+
     /**
      * 领取大会员福利.
      */

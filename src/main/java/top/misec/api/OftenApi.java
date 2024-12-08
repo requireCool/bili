@@ -75,11 +75,12 @@ public class OftenApi {
     }
 
     /**
-     * query username.
+     * query username. 接口已下线
      *
      * @param uid 用户uid
      * @return userName 查询到的用户名，为1则未查询到用户
      */
+    @Deprecated
     public static String queryUserNameByUid(String uid) {
         String urlParameter = "?mid=" + uid + "&jsonp=jsonp";
         String userName = "1";
@@ -91,5 +92,4 @@ public class OftenApi {
         }
         return userName;
     }
-
 }

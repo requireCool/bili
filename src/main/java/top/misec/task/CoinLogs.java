@@ -8,6 +8,9 @@ import lombok.extern.slf4j.Slf4j;
 import top.misec.api.ApiList;
 import top.misec.utils.HttpUtils;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 /**
  * 硬币日志.
  *
@@ -36,10 +39,13 @@ public class CoinLogs implements Task {
                     expend += delta;
                 }
             }
-            log.info("最近一周收入{}个硬币", income);
-            log.info("最近一周支出{}个硬币", expend);
+            log.info("最近一周收入{}个硬币", scaleCoinNum(income));
+            log.info("最近一周支出{}个硬币", scaleCoinNum(expend));
         }
+    }
 
+    private static double scaleCoinNum(double coin) {
+        return BigDecimal.valueOf(coin).setScale(1, RoundingMode. HALF_UP).doubleValue();
     }
 
     @Override

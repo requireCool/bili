@@ -61,15 +61,15 @@ public class GiveGift implements Task {
                         log.info("给直播间 - {} - {} - 数量: {}✔", roomId, giftName, giftNum);
                         flag = false;
                     } else {
-                        log.warn("送礼失败, 原因 : {}❌", jsonObject3);
+                        log.warn("❌送礼失败, 原因 : {}", jsonObject3);
                     }
                 }
             }
             if (flag) {
-                log.info("当前无即将过期礼物❌");
+                log.info("当前无即将过期礼物");
             }
         } catch (Exception e) {
-            log.error("💔赠送礼物异常 : ", e);
+            log.error("❌赠送礼物异常 : ", e);
         }
     }
 

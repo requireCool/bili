@@ -34,8 +34,6 @@ public class ChargeMe implements Task {
         //被充电用户的userID
         String userId = ConfigLoader.helperConfig.getTaskConfig().getChargeForLove();
 
-        String userName = OftenApi.queryUserNameByUid(userId);
-
         //B币券余额
         double couponBalance;
         //大会员类型
@@ -62,7 +60,7 @@ public class ChargeMe implements Task {
         }
 
 
-        log.info("月底自动充电对象是: {}", HelpUtil.userNameEncode(userName));
+        log.info("月底自动充电对象是: {}", userId);
 
         if (userInfo != null) {
             couponBalance = userInfo.getWallet().getCoupon_balance();
